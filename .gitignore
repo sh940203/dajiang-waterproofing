@@ -30,12 +30,29 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env / secrets — 一律忽略，只保留 *.example 範本
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+!.env.example
+!.dev.vars.example
 
 # vercel
 .vercel
 
+# cloudflare / opennext
+.wrangler/
+.open-next/
+
+# local db (dev)
+*.db
+*.db-journal
+local.db*
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 調色用原始大圖（runtime 用不到，本機保留即可）；grade.py 仍進版控
+_source/*.jpg

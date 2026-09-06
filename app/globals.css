@@ -1,26 +1,230 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+/* 站台為 light-only：把 shadcn 元件的 dark: 變體綁到 .dark class（永不加）→ 等於停用 */
+@custom-variant dark (&:is(.dark *));
+
+/* =============================================================
+   大江防水 — 品牌視覺色彩系統
+   取樣自公司 Logo（浮世繪風格・藍染 × 宣紙）
+   -------------------------------------------------------------
+   宣紙底    #FBF7F1  Logo 背景的暖白宣紙
+   墨藍      #1B345A  「大江」書法字的靛藍墨色（主色）
+   靛藍      #34597D  海浪與雲紋線稿的中間藍（互動色）
+   波紋藍    #5882AA  月輪與浪花的水藍
+   月青      #4E7BA3  月輪邊緣的青藍
+   淺天藍    #9DC0DA  最外層淡海浪
+   霧藍      #DCE7EF  雲紋留白 / 分隔線
+   印泥紅    #C0392B  角落印章的硃砂紅（點綴色，克制使用）
+   ============================================================= */
+
+@theme {
+  /* 藍染色階 —— 由深墨到淺天 */
+  --color-ink-950: #101f33;
+  --color-ink-900: #16293f;
+  --color-ink-800: #1b345a;
+  --color-ink-700: #24466b;
+  --color-ink-600: #34597d;
+  --color-ink-500: #4e7ba3;
+  --color-ink-400: #5882aa;
+  --color-ink-300: #7ba1c4;
+  --color-ink-200: #9dc0da;
+  --color-ink-100: #c7dcea;
+  --color-ink-50: #e8f1f7;
+
+  /* 宣紙色階 —— 頁面底色與卡片 */
+  --color-paper-50: #ffffff;
+  --color-paper-100: #fdfbf7;
+  --color-paper-200: #fbf7f1;
+  --color-paper-300: #f4ede1;
+  --color-paper-400: #e9dfce;
+  --color-paper-500: #d9ccb4;
+
+  /* 硃砂印泥 —— 點綴色 */
+  --color-seal-600: #9c2b21;
+  --color-seal-500: #c0392b;
+  --color-seal-400: #d5624f;
+
+  /* 語意化別名（前台） */
+  --color-background: var(--color-paper-200);
+  --color-surface: var(--color-paper-100);
+  --color-foreground: #2b3a4a;
+  --color-heading: var(--color-ink-800);
+  --color-dim: #6b7683; /* 次要文字（原 --color-muted，避免與 shadcn 的 muted 衝突） */
+  --color-border: #e4ddcf;
+  --color-seal: var(--color-seal-500);
+
+  /* shadcn/ui 語意 token（後台用；light-only，對應品牌色） */
+  --color-card: var(--color-paper-100);
+  --color-card-foreground: #2b3a4a;
+  --color-popover: var(--color-paper-100);
+  --color-popover-foreground: #2b3a4a;
+  --color-primary: var(--color-ink-800);
+  --color-primary-foreground: var(--color-paper-100);
+  --color-secondary: var(--color-paper-300);
+  --color-secondary-foreground: var(--color-ink-800);
+  --color-muted: var(--color-paper-300);
+  --color-muted-foreground: #6b7683;
+  --color-accent: var(--color-ink-50);
+  --color-accent-foreground: var(--color-ink-800);
+  --color-destructive: var(--color-seal-500);
+  --color-destructive-foreground: var(--color-paper-50);
+  --color-input: #e4ddcf;
+  --color-ring: var(--color-ink-600);
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* 字體 */
+  --font-sans: var(--font-noto-sans-tc), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-noto-serif-tc), "Songti TC", serif;
+
+  /* 版面 */
+  --spacing-gutter: 1.5rem;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    color: var(--color-heading);
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  ::selection {
+    background-color: var(--color-ink-800);
+    color: var(--color-paper-100);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink-600);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* -------------------------------------------------------------
+   首頁英雄區入場動畫（純 CSS，漸進增強）
+   靜止狀態即為「可見」，因此動畫未支援 / 未執行時內容仍完整呈現。
+   透過 @starting-style 指定進場前的狀態，再以 transition 補間。
+   GSAP 只負責滾動視差與閒置漂移等加分效果。
+   ------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  [data-hero-fade] {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.8s cubic-bezier(0.2, 0.65, 0.2, 1) var(--hero-delay, 0s),
+      transform 0.8s cubic-bezier(0.2, 0.65, 0.2, 1) var(--hero-delay, 0s);
+  }
+
+  @starting-style {
+    [data-hero-fade] {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+}
+
+/* 容器：一致的左右留白與最大寬度 */
+.container-page {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+/* -------------------------------------------------------------
+   後台行事曆（FullCalendar）— 對齊品牌配色
+   ------------------------------------------------------------- */
+.admin-calendar {
+  --fc-border-color: var(--color-border);
+  --fc-page-bg-color: transparent;
+  --fc-neutral-bg-color: var(--color-paper-200);
+  --fc-today-bg-color: var(--color-ink-50);
+  --fc-event-text-color: #fff;
+  --fc-small-font-size: 0.8rem;
+}
+
+.admin-calendar .fc {
+  font-family: var(--font-sans);
+}
+
+.admin-calendar .fc .fc-toolbar-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--color-ink-800);
+}
+
+.admin-calendar .fc .fc-button {
+  background: var(--color-paper-100);
+  border-color: var(--color-border);
+  color: var(--color-ink-700);
+  text-transform: none;
+  box-shadow: none;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.82rem;
+}
+
+.admin-calendar .fc .fc-button:hover {
+  background: var(--color-paper-300);
+}
+
+.admin-calendar .fc .fc-button-primary:not(:disabled).fc-button-active,
+.admin-calendar .fc .fc-button-primary:not(:disabled):active {
+  background: var(--color-ink-800);
+  border-color: var(--color-ink-800);
+  color: var(--color-paper-100);
+}
+
+.admin-calendar .fc .fc-button-primary:disabled {
+  background: var(--color-paper-200);
+  border-color: var(--color-border);
+  color: var(--color-dim);
+}
+
+.admin-calendar .fc .fc-col-header-cell-cushion,
+.admin-calendar .fc .fc-daygrid-day-number {
+  color: var(--color-dim);
+  text-decoration: none;
+  padding: 4px 6px;
+}
+
+.admin-calendar .fc .fc-event {
+  border-radius: 4px;
+  padding: 1px 4px;
+  font-weight: 500;
+  cursor: pointer;
 }

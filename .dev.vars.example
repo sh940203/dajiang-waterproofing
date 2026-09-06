@@ -1,0 +1,16 @@
+# 本機 `next dev` / `npm run preview` 用（wrangler 會自動讀）。複製成 .dev.vars 並填入真值。
+# .dev.vars 已被 gitignore。
+
+# Turso（`turso db create dajiang` 後 `turso db show --url dajiang` / `turso db tokens create dajiang`）
+TURSO_DATABASE_URL="libsql://xxxxx.turso.io"
+TURSO_AUTH_TOKEN="xxxxx"
+
+# session cookie 簽章用（隨機 32+ bytes，例如 `openssl rand -base64 48`）
+SESSION_SECRET="change-me"
+
+# 站台網址（metadata / sitemap / OG 用；本機可留 http://localhost:3000）
+NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+
+# R2 圖片對外網址（選填）。留空 = 走站內 /api/media 代理（本機開發即可用）。
+# 之後掛了 r2.dev 或自訂網域（media.<網域>）再填，例如 https://media.dajiang.example
+# MEDIA_PUBLIC_BASE_URL=""

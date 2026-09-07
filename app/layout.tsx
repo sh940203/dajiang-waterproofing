@@ -56,9 +56,9 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: site.name,
       images: [
         {
-          url: "/brand/great-wave.jpg",
-          width: 2200,
-          height: 1479,
+          url: "/brand/og-image.jpg",
+          width: 1200,
+          height: 630,
           alt: `${site.name}｜屋頂・外牆・浴廁・地下室・鐵皮屋防水工程`,
         },
       ],
@@ -67,7 +67,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: `${site.name}｜防水工程`,
       description: site.description,
-      images: ["/brand/great-wave.jpg"],
+      images: ["/brand/og-image.jpg"],
     },
     robots: { index: true, follow: true },
   };

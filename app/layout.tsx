@@ -51,6 +51,20 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       locale: "zh_TW",
       siteName: site.name,
+      images: [
+        {
+          url: "/brand/great-wave.jpg",
+          width: 2200,
+          height: 1479,
+          alt: `${site.name}｜屋頂・外牆・浴廁・地下室・鐵皮屋防水工程`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${site.name}｜防水工程`,
+      description: site.description,
+      images: ["/brand/great-wave.jpg"],
     },
     robots: { index: true, follow: true },
   };

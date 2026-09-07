@@ -44,7 +44,7 @@ export function WaveLayers({ className }: { className?: string }) {
       <img
         data-wave-img
         src="/brand/great-wave.jpg"
-        srcSet="/brand/great-wave@1400.jpg 1400w, /brand/great-wave.jpg 2200w"
+        srcSet="/brand/great-wave-1400.jpg 1400w, /brand/great-wave.jpg 2200w"
         sizes="100vw"
         alt=""
         width={2200}

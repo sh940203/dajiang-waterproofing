@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getServices } from "@/lib/content/db";
 
-const BASE = "https://dajiang-waterproofing.tw";
+// 正式網址。掛自訂網域後改這裡（robots.ts 也要一起改）再重新 deploy。
+const BASE = "https://dajiang-waterproofing.huhu940203.workers.dev";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const services = await getServices();

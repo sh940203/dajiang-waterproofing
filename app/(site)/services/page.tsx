@@ -8,7 +8,7 @@ import { getServices } from "@/lib/content/db";
 export const metadata: Metadata = {
   title: "服務項目",
   description:
-    "屋頂防水、外牆防水、浴廁防水、地下室防水、鐵皮屋防水 —— 各類滲漏的工法與施工流程說明。",
+    "屋頂防水與鐵皮屋防水 —— 施工流程與使用材料說明。",
 };
 
 export default async function ServicesPage() {
@@ -18,7 +18,7 @@ export default async function ServicesPage() {
     <>
       <PageHeader
         title="服務項目"
-        lead="五類最常見的滲漏部位，點入各項目可看到常見徵兆、施工流程與使用工法。"
+        lead="目前提供屋頂防水與鐵皮屋防水，點入各項目可看到常見徵兆、施工流程與使用材料。"
         breadcrumbs={[{ label: "服務項目" }]}
       />
 

@@ -31,8 +31,8 @@ export async function ServicesOverview() {
     <section className="container-page py-20 md:py-28">
       <SectionHeading
         kicker="服務項目"
-        title="五類最常見的滲漏，我們都處理"
-        intro="從判讀漏水路徑、選擇工法到蓄水測試驗收，針對不同部位提供對應的防水方案。"
+        title="屋頂與鐵皮屋，我們專門處理"
+        intro="從場勘丈量、抓漏修補到完工回報，針對不同屋頂狀況提供對應的防水隔熱方案。"
       />
 
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

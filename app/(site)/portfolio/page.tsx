@@ -8,7 +8,7 @@ import { publicUrl } from "@/lib/storage/r2";
 export const metadata: Metadata = {
   title: "施工實績",
   description:
-    "大江防水的屋頂、外牆、浴廁、地下室、鐵皮屋防水施工案例，附施工前後對比與施工重點。",
+    "大江防水的屋頂、鐵皮屋防水施工案例，附施工前後對比。",
 };
 
 export default async function PortfolioPage() {

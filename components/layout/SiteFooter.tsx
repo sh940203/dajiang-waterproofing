@@ -133,7 +133,7 @@ export function SiteFooter({
           <p>
             © {year} {site.name}（{site.nameEn}）. All rights reserved.
           </p>
-          <p>屋頂・外牆・浴廁・地下室・鐵皮屋防水工程</p>
+          <p>屋頂・鐵皮屋防水隔熱工程</p>
         </div>
       </div>
     </footer>

@@ -1,6 +1,6 @@
 # 大江防水官網 — Handoff
 
-> 更新：2026-10-21 · repo HEAD `ad85542` · 正式站 200（本檔與後續內容更新尚未 commit）
+> 更新：2026-10-22 · 正式站 200 · 最後部署 Version `ed746943`（含業主內容與文案改寫；對應程式碼見 git log，部署後的文案改動需 commit）
 
 ## 1. 一句話狀態
 
@@ -13,7 +13,7 @@
 | Worker | `dajiang-waterproofing`（Cloudflare 帳號 huhu940203@gmail.com）|
 | 資料庫 | Turso（libSQL）|
 | R2 buckets | `dajiang-media`（binding `MEDIA`）、`dajiang-waterproofing-opennext-cache`（binding `NEXT_INC_CACHE_R2_BUCKET`，OpenNext 寫死此名）|
-| 最後部署 | Version `4575379d`（含 og:image 1200×630、srcset 改名、metadataBase 寫死）|
+| 最後部署 | Version `ed746943`（2026-10-22：業主資料、10 筆實績、文案改寫、外牆／浴廁／地下室下架）|
 | 後台 | `/admin`（admin 密碼已由使用者自行更換）|
 
 ## 2. 技術棧與結構
@@ -78,6 +78,8 @@ Worker secrets（使用者自己設的）：`TURSO_DATABASE_URL`、`TURSO_AUTH_T
 
 ## 6. 踩坑清單
 
+- **部署前務必 `rm -rf .next .open-next`**：`next build` 會沿用本機 `.next/cache/fetch-cache` 的 `unstable_cache` 舊資料，把「改 DB 前」的內容烤進 build 並上傳 R2 快取，線上就會是舊文案（2026-10-22 實際發生：第一次部署後線上仍是舊字、下架服務仍 200，清掉重部署後才正確）。直接改 DB（腳本）之後尤其要注意。
+
 - 直接 `db:seed`（繞過 server action）不會 `updateTag`，`next dev` 磁碟快取要 `rm -rf .next`（有時加 `node_modules/.cache`，出現 `@vercel/turbopack-next/internal/font/google/font` 找不到就是這個）再重啟。
 - 檔名不要含 `@`：Cloudflare 會 307 轉址到 `%40`（已把 `great-wave@1400.jpg` 改名 `great-wave-1400.jpg`）。
 - hero `<img>` **不可加 `will-change`**（會糊）；hero 入場動畫靜止態必須是可見（瀏覽器預覽 pane 隱藏時 rAF/transition 會凍結）。
@@ -107,7 +109,8 @@ Worker secrets（使用者自己設的）：`TURSO_DATABASE_URL`、`TURSO_AUTH_T
 - **聯絡**：LINE ID `@576sbooq`；另有 FB 粉專、IG（網址見業主 docx；IG 連結帶追蹤參數，使用前去掉）。
 - **實績**：10 筆真實案例（PDF 第一頁；8 筆有前後照、第 9／10 筆無照片）。公開頁只顯示縣市＋區域、不列業主名稱（含私人住家與民宿）。第二頁驗收資料尚未收到。
 - **功能訊號**：業主流程是 FB 引流 → 官方 LINE 改名／標籤。詢價收件匣已有狀態流轉；使用者認為更重要的是「狀態修改歷程」（＝延後項的 `activityLog`）。未來可能要「工班各自只看自己行程＋休假」（需第三種角色），業主目前先用 Google 表格，不急。另要求：短影片區塊（施工紀錄＋行銷片）、徵才／合作廠商專區（申請表單＋留聯絡方式）。
-- **已知文案衝突（待處理）**：站上既有服務頁文案是早期自擬內容，與業主實況不符——例如寫「PU 為主力工法」（業主主張 SOUDAL、不推 PU）、保固「3–5 年」（業主實際為 1 年）、「蓄水測試驗收」（業主流程未提）。上線前應與業主確認後改寫。
+- **文案改寫（2026-10-22 已上線）**：站上早期自擬文案與業主實況不符（PU 主力、保固 3–5 年、蓄水測試、五類服務…），已依業主說法改寫，詳見 `copy-rewrite-draft.md`。**外牆／浴廁／地下室三個服務已下架（published=0，等業主確認有沒有做；確認有做就到後台重新發佈並補真實工序）**。
+- **仍待業主確認**：服務範圍（站上仍是「台中 · 彰化 · 南投 · 苗栗」，但真實案例遍及宜蘭到花蓮）、營業時間、勘驗／報價是否免費、「大江」名字由來、保固年限可否公開、採光罩／窗戶／天溝內容、案例 9／10 照片。這幾項站上仍是舊值。
 
 ## 9. 近期 commits
 

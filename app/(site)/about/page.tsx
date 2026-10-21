@@ -32,6 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "關於我們",
     description: `${site.name}的施工理念、服務流程與服務範圍。`,
+    alternates: { canonical: "/about" },
   };
 }
 

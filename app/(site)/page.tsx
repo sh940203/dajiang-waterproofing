@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Fragment } from "react";
 import { WaveHero, type HeroContent } from "@/components/hero/WaveHero";
 import { CoreValues } from "@/components/sections/CoreValues";
@@ -9,6 +10,10 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getSiteContent } from "@/lib/content/db";
 import { CONTENT_DEFAULTS } from "@/lib/content/blocks";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 type BrandStoryContent = { kicker: string; title: string; paragraphs: string[] };
 

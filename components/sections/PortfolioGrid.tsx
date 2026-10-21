@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { CalendarDays, MapPin } from "lucide-react";
 import { BeforeAfter } from "@/components/ui/BeforeAfter";
@@ -69,7 +70,9 @@ export function PortfolioGrid({
                 {c.categoryLabel}
               </span>
               <h2 className="mt-4 text-xl font-semibold text-ink-800">
-                {c.title}
+                <Link href={`/portfolio/${c.slug}`} className="hover:text-seal-500">
+                  {c.title}
+                </Link>
               </h2>
               <p className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-dim">
                 {c.location && (
@@ -104,6 +107,7 @@ export function PortfolioGrid({
               after={c.afterUrl}
               beforeNote={c.beforeNote ?? undefined}
               afterNote={c.afterNote ?? undefined}
+              subject={[c.location, c.title].filter(Boolean).join(" ")}
             />
           </article>
         ))}

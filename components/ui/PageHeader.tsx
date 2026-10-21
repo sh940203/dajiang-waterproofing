@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo/schema";
 
 type Crumb = { label: string; href?: string };
 
@@ -12,6 +14,9 @@ type Props = {
 export function PageHeader({ title, lead, breadcrumbs }: Props) {
   return (
     <section className="relative overflow-hidden border-b border-border bg-paper-100">
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <JsonLd data={breadcrumbSchema(breadcrumbs)} />
+      )}
       {/* 淡海浪紋背景 */}
       <svg
         aria-hidden

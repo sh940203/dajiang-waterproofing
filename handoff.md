@@ -70,7 +70,7 @@ Worker secrets（使用者自己設的）：`TURSO_DATABASE_URL`、`TURSO_AUTH_T
 
 1. **輪替 Turso auth token（未做）** — `npm run deploy` 的 build 需要 Turso 憑證（`/services/[slug]` 靜態產生），OpenNext 會把根目錄 `.env`（含明文 `TURSO_*`、`SEED_ADMIN_*`）複製進 bundle（`.open-next/server-functions/default/.env`）並被 Next 內聯。CF secret 執行期會蓋過，站正常，但 bundle 內有舊明文。做法：Turso 產新 token → `wrangler secret put TURSO_AUTH_TOKEN` → 撤銷舊的 → 同步更新本機 `.env`/`.dev.vars`（**由使用者自己填值**）。
    根治（可選）：讓 `/services/[slug]` 改全動態、build 不碰 DB，並避免直接 `process.env.TURSO_*` 被內聯／`.env` 被打包。
-2. **掛自訂網域時，三處寫死網址要一起改再 deploy**：`app/layout.tsx`（`SITE_URL`/metadataBase）、`app/sitemap.ts`（`BASE`）、`app/robots.ts`；並 `wrangler secret put NEXT_PUBLIC_SITE_URL`。原因：`NEXT_PUBLIC_SITE_URL` 是執行期 secret，build 期讀不到；`.env` 裡的是 localhost。
+2. **掛自訂網域時，改 `lib/site-url.ts` 的 `SITE_URL` 一行再 deploy**（metadataBase、canonical、sitemap、robots、JSON-LD、llms.txt 都讀它）；並 `wrangler secret put NEXT_PUBLIC_SITE_URL`。原因：`NEXT_PUBLIC_SITE_URL` 是執行期 secret，build 期讀不到；`.env` 裡的是 localhost。
 3. **業主補資料**：電話 `0958 146 555`、LINE `@576sbooq` 已提供；Email／地址仍空（前台自動隱藏）。業主已提供 10 筆真實實績（見 §8），取代 6 筆範例；照片走後台或腳本上傳到 R2 `cases/`。
 4. **選配硬化**：`/api/media` 補 `X-Content-Type-Options: nosniff`；登入退避目前是 per-isolate 記憶體 Map（Workers 上很弱）。
 5. 延後項目：`activityLog` 稽核表；服務／實績排序目前是 ↑/↓ 按鈕（非拖曳）。

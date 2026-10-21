@@ -1,19 +1,21 @@
 import type { MetadataRoute } from "next";
-import { getServices } from "@/lib/content/db";
-
-// 正式網址。掛自訂網域後改這裡（robots.ts 也要一起改）再重新 deploy。
-const BASE = "https://dajiang-waterproofing.huhu940203.workers.dev";
+import { getCaseStudies, getServices } from "@/lib/content/db";
+import { SITE_URL } from "@/lib/site-url";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const services = await getServices();
+  const [services, cases] = await Promise.all([getServices(), getCaseStudies()]);
   const routes = ["", "/about", "/services", "/portfolio", "/inquiry", "/contact"];
   const staticEntries = routes.map((path) => ({
-    url: `${BASE}${path}`,
+    url: `${SITE_URL}${path}`,
     lastModified: new Date(),
   }));
   const serviceEntries = services.map((c) => ({
-    url: `${BASE}/services/${c.slug}`,
+    url: `${SITE_URL}/services/${c.slug}`,
     lastModified: new Date(),
   }));
-  return [...staticEntries, ...serviceEntries];
+  const caseEntries = cases.map((c) => ({
+    url: `${SITE_URL}/portfolio/${c.slug}`,
+    lastModified: c.createdAt ?? new Date(),
+  }));
+  return [...staticEntries, ...serviceEntries, ...caseEntries];
 }

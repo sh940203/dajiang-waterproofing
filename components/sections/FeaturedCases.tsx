@@ -35,7 +35,9 @@ export async function FeaturedCases() {
                 {c.categoryLabel}
               </span>
               <h3 className="mt-4 text-xl font-semibold text-ink-800">
-                {c.title}
+                <Link href={`/portfolio/${c.slug}`} className="hover:text-seal-500">
+                  {c.title}
+                </Link>
               </h3>
               <p className="mt-1 text-sm text-dim">
                 {c.location}・{c.year}
@@ -59,6 +61,7 @@ export async function FeaturedCases() {
               after={c.photo?.afterKey ? publicUrl(c.photo.afterKey) : undefined}
               beforeNote={c.beforeNote ?? undefined}
               afterNote={c.afterNote ?? undefined}
+              subject={[c.location, c.title].filter(Boolean).join(" ")}
             />
           </article>
         ))}

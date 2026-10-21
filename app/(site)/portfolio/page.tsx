@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "施工實績",
   description:
     "大江防水的屋頂、鐵皮屋防水施工案例，附施工前後對比。",
+  alternates: { canonical: "/portfolio" },
 };
 
 export default async function PortfolioPage() {

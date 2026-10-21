@@ -12,6 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const channels = buildChannels(site, contactReady).filter((c) => c.ready);
   return {
     title: "聯絡我們",
+    alternates: { canonical: "/contact" },
     description: `聯絡${site.name}：${channels
       .map((c) => `${c.label} ${c.value}`)
       .join("、")}。服務範圍 ${site.serviceArea}。`,

@@ -5,6 +5,8 @@ import { FileCheck, Layers, TriangleAlert } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { BeforeAfter } from "@/components/ui/BeforeAfter";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { serviceSchema } from "@/lib/seo/schema";
 import { getCaseStudiesWithPhotos, getServices, getService } from "@/lib/content/db";
 import { publicUrl } from "@/lib/storage/r2";
 
@@ -26,6 +28,7 @@ export async function generateMetadata({
   return {
     title: service.label,
     description: (service.intro ?? "").slice(0, 90),
+    alternates: { canonical: `/services/${slug}` },
   };
 }
 
@@ -42,6 +45,7 @@ export default async function ServiceDetailPage({
 
   return (
     <>
+      <JsonLd data={serviceSchema(service)} />
       <PageHeader
         title={service.label}
         lead={service.headline ?? undefined}
@@ -134,7 +138,9 @@ export default async function ServiceDetailPage({
                 >
                   <div>
                     <h3 className="text-lg font-semibold text-ink-800">
-                      {c.title}
+                      <Link href={`/portfolio/${c.slug}`} className="hover:text-seal-500">
+                        {c.title}
+                      </Link>
                     </h3>
                     <p className="mt-1 text-sm text-dim">
                       {c.location}・{c.year}
@@ -148,6 +154,7 @@ export default async function ServiceDetailPage({
                     after={c.photo?.afterKey ? publicUrl(c.photo.afterKey) : undefined}
                     beforeNote={c.beforeNote ?? undefined}
                     afterNote={c.afterNote ?? undefined}
+                    subject={[c.location, c.title].filter(Boolean).join(" ")}
                   />
                 </article>
               ))}

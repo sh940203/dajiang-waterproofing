@@ -6,6 +6,8 @@ type Props = {
   after?: string;
   beforeNote?: string;
   afterNote?: string;
+  /** 照片主題（地點＋工程名稱），寫進 alt 讓圖片搜尋與螢幕報讀知道是哪個案子 */
+  subject?: string;
   className?: string;
 };
 
@@ -19,12 +21,13 @@ export function BeforeAfter({
   after,
   beforeNote,
   afterNote,
+  subject,
   className,
 }: Props) {
   return (
     <div className={cn("grid gap-3 sm:grid-cols-2", className)}>
-      <Panel label="施工前" tone="before" src={before} note={beforeNote} />
-      <Panel label="施工後" tone="after" src={after} note={afterNote} />
+      <Panel label="施工前" tone="before" src={before} note={beforeNote} subject={subject} />
+      <Panel label="施工後" tone="after" src={after} note={afterNote} subject={subject} />
     </div>
   );
 }
@@ -34,19 +37,22 @@ function Panel({
   tone,
   src,
   note,
+  subject,
 }: {
   label: string;
   tone: "before" | "after";
   src?: string;
   note?: string;
+  subject?: string;
 }) {
+  const alt = [subject, label, note].filter(Boolean).join(" ");
   return (
     <figure className="overflow-hidden rounded-xl border border-border bg-paper-100">
       <div className="relative aspect-[4/3]">
         {src ? (
           <Image
             src={src}
-            alt={note ? `${label}：${note}` : label}
+            alt={alt}
             fill
             sizes="(min-width: 640px) 24rem, 100vw"
             className="object-cover"

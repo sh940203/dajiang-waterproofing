@@ -3,6 +3,7 @@ import { Noto_Sans_TC, Noto_Serif_TC } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { getSite } from "@/lib/content/settings";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site-url";
 
 const notoSansTC = Noto_Sans_TC({
   subsets: ["latin"],
@@ -20,10 +21,6 @@ const notoSerifTC = Noto_Serif_TC({
   preload: false,
 });
 
-// 正式網址（OG / canonical / metadataBase 用）。build 期讀不到 Cloudflare secret，
-// 且 .env 的 NEXT_PUBLIC_SITE_URL 是本機開發用的 localhost，所以直接寫死正式網址。
-// 掛自訂網域後：這裡、app/sitemap.ts、app/robots.ts 三處一起改再重新 deploy。
-const SITE_URL = "https://dajiang-waterproofing.huhu940203.workers.dev";
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = await getSite();

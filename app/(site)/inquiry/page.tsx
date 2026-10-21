@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "預約詢價",
   description:
     "填寫一次表單，附上照片與方便的勘驗時段，大江防水會回覆評估與大概方向。現場勘驗免費。",
+  alternates: { canonical: "/inquiry" },
 };
 
 const steps = [

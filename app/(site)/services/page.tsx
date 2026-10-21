@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "服務項目",
   description:
     "屋頂防水與鐵皮屋防水 —— 施工流程與使用材料說明。",
+  alternates: { canonical: "/services" },
 };
 
 export default async function ServicesPage() {

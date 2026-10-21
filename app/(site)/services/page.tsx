@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { MaterialBrands } from "@/components/sections/MaterialBrands";
 import { getServices } from "@/lib/content/db";
 
 export const metadata: Metadata = {
@@ -50,6 +51,8 @@ export default async function ServicesPage() {
           ))}
         </div>
       </section>
+
+      <MaterialBrands />
 
       <CtaBand />
     </>

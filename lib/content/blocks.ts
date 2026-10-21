@@ -78,6 +78,34 @@ export const CONTENT_BLOCKS: BlockDef[] = [
     ],
   },
   {
+    key: "home.materials",
+    label: "首頁／服務頁 · 使用材料",
+    description: "合作材料品牌卡（JUTA、SOUDAL）與「為什麼推薦 SOUDAL」說明",
+    fields: [
+      { name: "kicker", label: "眉標", type: "text" },
+      { name: "title", label: "標題", type: "text" },
+      { name: "intro", label: "引言", type: "textarea" },
+      {
+        name: "items",
+        label: "材料品牌",
+        type: "objectList",
+        itemFields: [
+          { name: "name", label: "品牌名稱", type: "text" },
+          { name: "tagline", label: "一句話定位", type: "text" },
+          { name: "desc", label: "品牌簡介", type: "textarea" },
+          { name: "features", label: "功能與特色", type: "textarea" },
+        ],
+      },
+      { name: "whyTitle", label: "推薦說明標題", type: "text" },
+      {
+        name: "whyParagraphs",
+        label: "推薦說明段落",
+        type: "stringList",
+        itemLabel: "段落",
+      },
+    ],
+  },
+  {
     key: "about.intro",
     label: "關於頁 · 開頭",
     description: "關於頁標題與施工理念段落",
@@ -162,6 +190,33 @@ export const CONTENT_DEFAULTS: Record<string, Record<string, unknown>> = {
       "以防水為本，延伸到隔熱與通風。三者一起處理，室內才不會這裡補好、那裡又悶出濕氣。",
     footnote:
       "防水擋住水、隔熱擋住熱、通風帶走濕氣與悶氣 —— 三者一起做，才是真正會呼吸的健康節能宅。",
+  },
+  "home.materials": {
+    kicker: "使用材料",
+    title: "選用兩個專注防水與耐候的材料品牌",
+    intro: "依屋頂的狀況與需求，搭配適合的材料，而不是一種材料用到底。",
+    items: [
+      {
+        name: "JUTA PAINT 久大塗料",
+        tagline: "彈性防水兼防熱漆",
+        desc: "久大塗料創立於 1969 年，長期專注於建築防水及環保水性塗料的研發與製造，產品涵蓋防水、防熱、防霉及彈性塗料。",
+        features:
+          "採用彈性壓克力樹脂，添加中空陶磁及防熱粒子，兼具防水、隔熱、彈性及耐候性。可填補細小裂痕，適用於水泥屋頂、外牆、鐵皮及貨櫃等戶外建築表面。官方資料標示可依建築材質降低室內約 2～5℃。",
+      },
+      {
+        name: "SOUDAL 速的奧（比利時）",
+        tagline: "針對特殊建物、嚴苛環境、水泥屋頂",
+        desc: "SOUDAL（速的奧）創立於 1966 年，是來自比利時的全球品牌，專精於密封膠、PU 發泡劑及黏著劑，產品行銷全球 140 多國，以黏著力、彈性與創新研發著稱。",
+        features:
+          "不同於一般防水材及矽利康容易發霉、斷裂脆化，具備耐酸、耐鹼、耐腐蝕、抗紫外線等特性，適合講究施工品質的屋頂與建物。",
+      },
+    ],
+    whyTitle: "為什麼我們推薦 SOUDAL 速的奧？",
+    whyParagraphs: [
+      "一般 PU 防水，主要是在屋頂表面形成一層防水膜。但屋頂每天都在接受太陽曝曬、下雨與溫差變化，加上建築物本身會伸縮，久了防水層容易老化，裂縫、接縫也可能再次出現問題。",
+      "所以我們選擇使用比利時 SOUDAL 速的奧。它不是單純「塗一層防水漆」，而是依照不同的位置和問題，選擇適合的材料來處理：裂縫要處理、接縫要密封、基面要做好，最後再完整施作防水層。",
+      "目的是讓防水不只是「現在不漏」，而是盡可能更耐曬、更耐候，也更能應付屋頂長期的伸縮變化。",
+    ],
   },
   "about.intro": {
     pageLead: "一支專注在「找到水、擋住水、導開水」的防水施工團隊。",

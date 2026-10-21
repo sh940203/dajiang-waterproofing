@@ -12,6 +12,8 @@ export type Site = {
   phoneHref: string;
   lineId: string;
   lineHref: string;
+  facebookUrl: string;
+  instagramUrl: string;
   email: string;
   address: string;
   hours: string;
@@ -23,6 +25,8 @@ export type CoreValue = { element: string; label: string; summary: string };
 export type ContactReady = {
   phone: boolean;
   line: boolean;
+  facebook: boolean;
+  instagram: boolean;
   email: boolean;
   address: boolean;
 };
@@ -39,6 +43,8 @@ export async function getSite(): Promise<Site> {
     phoneHref: s.phoneHref ?? "",
     lineId: s.lineId ?? "",
     lineHref: s.lineHref ?? "",
+    facebookUrl: s.facebookUrl ?? "",
+    instagramUrl: s.instagramUrl ?? "",
     email: s.email ?? "",
     address: s.address ?? "",
     hours: s.hours ?? "",
@@ -57,10 +63,15 @@ export async function getCoreValues(): Promise<CoreValue[]> {
 }
 
 /** 哪些聯絡管道已是正式資訊——由值本身推導，未 ready 的前台一律不呈現 */
-export function contactReadyFrom(site: Pick<Site, "phone" | "lineId" | "lineHref" | "email" | "address">): ContactReady {
+export function contactReadyFrom(site: Pick<
+    Site,
+    "phone" | "lineId" | "lineHref" | "facebookUrl" | "instagramUrl" | "email" | "address"
+  >): ContactReady {
   return {
     phone: Boolean(site.phone),
     line: Boolean(site.lineId && site.lineHref),
+    facebook: Boolean(site.facebookUrl),
+    instagram: Boolean(site.instagramUrl),
     email: Boolean(site.email),
     address: Boolean(site.address),
   };

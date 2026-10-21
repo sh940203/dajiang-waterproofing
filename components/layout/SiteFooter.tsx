@@ -88,6 +88,32 @@ export function SiteFooter({
                 </a>
               </li>
             )}
+            {contactReady.facebook && (
+              <li>
+                Facebook：
+                <a
+                  href={site.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-paper-100"
+                >
+                  大江防水粉絲專頁
+                </a>
+              </li>
+            )}
+            {contactReady.instagram && (
+              <li>
+                Instagram：
+                <a
+                  href={site.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-paper-100"
+                >
+                  @dajiang_2026
+                </a>
+              </li>
+            )}
             {contactReady.email && (
               <li>
                 Email：

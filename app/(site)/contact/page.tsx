@@ -37,6 +37,22 @@ function buildChannels(
       ready: contactReady.line,
     },
     {
+      key: "facebook",
+      label: "Facebook",
+      value: "大江防水粉絲專頁",
+      href: site.facebookUrl,
+      note: "追蹤粉專看最新施工紀錄",
+      ready: contactReady.facebook,
+    },
+    {
+      key: "instagram",
+      label: "Instagram",
+      value: "@dajiang_2026",
+      href: site.instagramUrl,
+      note: "施工現場與完工照片",
+      ready: contactReady.instagram,
+    },
+    {
       key: "email",
       label: "Email",
       value: site.email,
@@ -69,8 +85,12 @@ export default async function ContactPage() {
                 <a
                   key={c.key}
                   href={c.href}
-                  target={c.key === "line" ? "_blank" : undefined}
-                  rel={c.key === "line" ? "noopener noreferrer" : undefined}
+                  target={c.key === "phone" || c.key === "email" ? undefined : "_blank"}
+                  rel={
+                    c.key === "phone" || c.key === "email"
+                      ? undefined
+                      : "noopener noreferrer"
+                  }
                   className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-paper-100 p-5 transition-colors hover:border-ink-300 hover:bg-paper-50"
                 >
                   <div>

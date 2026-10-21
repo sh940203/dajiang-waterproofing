@@ -16,6 +16,8 @@ export const SETTING_FIELDS: {
   { key: "phoneHref", label: "電話連結", type: "text", hint: "例：tel:0958146555" },
   { key: "lineId", label: "LINE ID", type: "text", hint: "留空則前台不顯示" },
   { key: "lineHref", label: "LINE 連結", type: "text" },
+  { key: "facebookUrl", label: "Facebook 粉專連結", type: "text", hint: "留空則前台不顯示" },
+  { key: "instagramUrl", label: "Instagram 連結", type: "text", hint: "留空則前台不顯示" },
   { key: "email", label: "Email", type: "text", hint: "留空則前台不顯示" },
   { key: "address", label: "地址", type: "text", hint: "留空則前台不顯示" },
   { key: "hours", label: "營業時間", type: "text" },

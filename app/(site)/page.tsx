@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { WaveHero, type HeroContent } from "@/components/hero/WaveHero";
 import { CoreValues } from "@/components/sections/CoreValues";
 import { ServicesOverview } from "@/components/sections/ServicesOverview";
+import { MaterialBrands } from "@/components/sections/MaterialBrands";
 import { WhyUs } from "@/components/sections/WhyUs";
 import { FeaturedCases } from "@/components/sections/FeaturedCases";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -48,6 +49,7 @@ export default async function HomePage() {
       </section>
 
       <ServicesOverview />
+      <MaterialBrands />
       <WhyUs />
       <FeaturedCases />
       <CtaBand />

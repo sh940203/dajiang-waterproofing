@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CalendarDays, ClipboardList, Handshake, Ruler } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { InquiryForm } from "@/components/forms/InquiryForm";
 import { OTHER_SERVICE_TYPE } from "@/lib/schemas";
@@ -12,10 +13,10 @@ export const metadata: Metadata = {
 };
 
 const steps = [
-  { title: "填寫表單", desc: "描述滲漏狀況，可附照片。" },
-  { title: "回覆與約時間", desc: "我們評估後回電，約定現場勘驗時段。" },
-  { title: "現場勘驗與報價", desc: "到場判讀漏水源頭，提供逐項報價。" },
-  { title: "決定是否施工", desc: "報價由您評估，不強迫、不收勘驗費。" },
+  { icon: ClipboardList, title: "填寫表單", desc: "描述滲漏狀況，可附照片。" },
+  { icon: CalendarDays, title: "回覆與約時間", desc: "我們評估後回電，約定現場勘驗時段。" },
+  { icon: Ruler, title: "現場勘驗與報價", desc: "到場判讀漏水源頭，提供逐項報價。" },
+  { icon: Handshake, title: "決定是否施工", desc: "報價由您評估，不強迫、不收勘驗費。" },
 ];
 
 export default async function InquiryPage() {
@@ -46,7 +47,8 @@ export default async function InquiryPage() {
                     <span className="absolute -left-[1.55rem] top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-ink-800 text-[0.65rem] font-medium text-paper-100 ring-4 ring-background">
                       {i + 1}
                     </span>
-                    <h3 className="text-sm font-semibold text-ink-800">
+                    <h3 className="flex items-center gap-1.5 text-sm font-semibold text-ink-800">
+                      <s.icon aria-hidden size={16} strokeWidth={1.7} className="text-ink-500" />
                       {s.title}
                     </h3>
                     <p className="mt-1 text-sm text-foreground/70">{s.desc}</p>

@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
+import { FacebookIcon, InstagramIcon, LineIcon } from "@/components/ui/SocialIcons";
 import type { NavNode } from "@/lib/site";
 import type { ContactReady, Site } from "@/lib/content/settings";
 
@@ -69,14 +71,16 @@ export function SiteFooter({
             聯絡我們
           </h3>
           <ul className="mt-4 space-y-2.5 text-sm text-paper-200/70">
-            <li>
+            <li className="flex items-center gap-2">
+              <Phone aria-hidden size={14} strokeWidth={1.8} className="shrink-0" />
               電話：
               <a href={site.phoneHref} className="hover:text-paper-100">
                 {site.phone}
               </a>
             </li>
             {contactReady.line && (
-              <li>
+              <li className="flex items-center gap-2">
+                <LineIcon aria-hidden size={14} strokeWidth={1.8} className="shrink-0" />
                 LINE：
                 <a
                   href={site.lineHref}
@@ -89,7 +93,8 @@ export function SiteFooter({
               </li>
             )}
             {contactReady.facebook && (
-              <li>
+              <li className="flex items-center gap-2">
+                <FacebookIcon aria-hidden size={14} strokeWidth={1.8} className="shrink-0" />
                 Facebook：
                 <a
                   href={site.facebookUrl}
@@ -102,7 +107,8 @@ export function SiteFooter({
               </li>
             )}
             {contactReady.instagram && (
-              <li>
+              <li className="flex items-center gap-2">
+                <InstagramIcon aria-hidden size={14} strokeWidth={1.8} className="shrink-0" />
                 Instagram：
                 <a
                   href={site.instagramUrl}
@@ -115,15 +121,24 @@ export function SiteFooter({
               </li>
             )}
             {contactReady.email && (
-              <li>
+              <li className="flex items-center gap-2">
+                <Mail aria-hidden size={14} strokeWidth={1.8} className="shrink-0" />
                 Email：
                 <a href={`mailto:${site.email}`} className="hover:text-paper-100">
                   {site.email}
                 </a>
               </li>
             )}
-            {contactReady.address && <li>地址：{site.address}</li>}
-            <li>營業時間：{site.hours}</li>
+            {contactReady.address && (
+              <li className="flex items-center gap-2">
+                <MapPin aria-hidden size={14} strokeWidth={1.8} className="shrink-0" />
+                地址：{site.address}
+              </li>
+            )}
+            <li className="flex items-center gap-2">
+              <Clock aria-hidden size={14} strokeWidth={1.8} className="shrink-0" />
+              營業時間：{site.hours}
+            </li>
           </ul>
         </div>
       </div>

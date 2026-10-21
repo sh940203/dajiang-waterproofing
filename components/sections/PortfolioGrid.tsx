@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { CalendarDays, MapPin } from "lucide-react";
 import { BeforeAfter } from "@/components/ui/BeforeAfter";
 import { cn } from "@/lib/utils";
 
@@ -70,8 +71,19 @@ export function PortfolioGrid({
               <h2 className="mt-4 text-xl font-semibold text-ink-800">
                 {c.title}
               </h2>
-              <p className="mt-1 text-sm text-dim">
-                {c.location}・{c.year}
+              <p className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-dim">
+                {c.location && (
+                  <span className="inline-flex items-center gap-1">
+                    <MapPin aria-hidden size={14} strokeWidth={1.8} />
+                    {c.location}
+                  </span>
+                )}
+                {c.year && (
+                  <span className="inline-flex items-center gap-1">
+                    <CalendarDays aria-hidden size={14} strokeWidth={1.8} />
+                    {c.year}
+                  </span>
+                )}
               </p>
               <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground/75">
                 {c.summary}

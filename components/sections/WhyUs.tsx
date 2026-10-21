@@ -1,23 +1,29 @@
+import { Camera, Handshake, Layers, Ruler } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { IconTile } from "@/components/ui/IconTile";
 
 const points = [
   {
     no: "01",
+    icon: Ruler,
     title: "先場勘，再說明",
     desc: "師傅到現場先丈量實際坪數、拍照留存，把屋頂狀況看清楚，再向您說明做法。",
   },
   {
     no: "02",
+    icon: Layers,
     title: "材料與做法依現場調整",
     desc: "先抓漏、修補裂縫、清潔基面，再依屋頂狀況與需求搭配防水與隔熱材料，不是每個案子都用同一招。",
   },
   {
     no: "03",
+    icon: Handshake,
     title: "有共識才施工",
     desc: "施工前與您確認範圍與做法，取得共識後才開始。",
   },
   {
     no: "04",
+    icon: Camera,
     title: "完工回報與保固書",
     desc: "完工後拍照回報，提供保固書，並清潔施工帶來的髒污。",
   },
@@ -34,9 +40,12 @@ export function WhyUs() {
         <div className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2">
           {points.map((p) => (
             <div key={p.no} className="flex gap-5">
-              <span className="font-serif text-2xl font-bold text-ink-200">
-                {p.no}
-              </span>
+              <div className="flex flex-col items-center gap-2">
+                <IconTile icon={p.icon} />
+                <span className="font-serif text-sm font-bold text-ink-300">
+                  {p.no}
+                </span>
+              </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink-800">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/75">

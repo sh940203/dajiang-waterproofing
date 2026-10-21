@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FileCheck, Layers, TriangleAlert } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { BeforeAfter } from "@/components/ui/BeforeAfter";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -62,7 +63,7 @@ export default async function ServiceDetailPage({
               <ul className="mt-4 space-y-2.5">
                 {(service.symptoms ?? []).map((s) => (
                   <li key={s} className="flex gap-3 text-sm text-foreground/80">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-seal-500" />
+                    <TriangleAlert aria-hidden size={16} strokeWidth={1.8} className="mt-0.5 shrink-0 text-seal-500" />
                     {s}
                   </li>
                 ))}
@@ -91,7 +92,8 @@ export default async function ServiceDetailPage({
 
           <aside className="space-y-6">
             <div className="rounded-2xl border border-border bg-paper-100 p-6">
-              <h3 className="text-sm font-semibold tracking-widest text-ink-500">
+              <h3 className="flex items-center gap-2 text-sm font-semibold tracking-widest text-ink-500">
+                <Layers aria-hidden size={18} strokeWidth={1.6} />
                 材料與工法
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-foreground/80">
@@ -99,7 +101,8 @@ export default async function ServiceDetailPage({
               </p>
             </div>
             <div className="rounded-2xl border border-border bg-paper-100 p-6">
-              <h3 className="text-sm font-semibold tracking-widest text-ink-500">
+              <h3 className="flex items-center gap-2 text-sm font-semibold tracking-widest text-ink-500">
+                <FileCheck aria-hidden size={18} strokeWidth={1.6} />
                 保固
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-foreground/80">

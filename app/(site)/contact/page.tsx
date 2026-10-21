@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { IconTile } from "@/components/ui/IconTile";
+import { FacebookIcon, InstagramIcon, LineIcon } from "@/components/ui/SocialIcons";
 import { getSite, contactReadyFrom } from "@/lib/content/settings";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,6 +25,7 @@ function buildChannels(
   return [
     {
       key: "phone",
+      icon: Phone,
       label: "電話",
       value: site.phone,
       href: site.phoneHref,
@@ -30,6 +34,7 @@ function buildChannels(
     },
     {
       key: "line",
+      icon: LineIcon,
       label: "LINE",
       value: site.lineId,
       href: site.lineHref,
@@ -38,6 +43,7 @@ function buildChannels(
     },
     {
       key: "facebook",
+      icon: FacebookIcon,
       label: "Facebook",
       value: "大江防水粉絲專頁",
       href: site.facebookUrl,
@@ -46,6 +52,7 @@ function buildChannels(
     },
     {
       key: "instagram",
+      icon: InstagramIcon,
       label: "Instagram",
       value: "@dajiang_2026",
       href: site.instagramUrl,
@@ -54,6 +61,7 @@ function buildChannels(
     },
     {
       key: "email",
+      icon: Mail,
       label: "Email",
       value: site.email,
       href: `mailto:${site.email}`,
@@ -93,14 +101,17 @@ export default async function ContactPage() {
                   }
                   className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-paper-100 p-5 transition-colors hover:border-ink-300 hover:bg-paper-50"
                 >
-                  <div>
-                    <p className="text-xs font-medium tracking-widest text-ink-500">
-                      {c.label}
-                    </p>
-                    <p className="mt-1 text-lg font-semibold text-ink-800">
-                      {c.value}
-                    </p>
-                    <p className="mt-1 text-sm text-dim">{c.note}</p>
+                  <div className="flex items-center gap-4">
+                    <IconTile icon={c.icon} />
+                    <div>
+                      <p className="text-xs font-medium tracking-widest text-ink-500">
+                        {c.label}
+                      </p>
+                      <p className="mt-1 text-lg font-semibold text-ink-800">
+                        {c.value}
+                      </p>
+                      <p className="mt-1 text-sm text-dim">{c.note}</p>
+                    </div>
                   </div>
                   <svg width="20" height="20" viewBox="0 0 16 16" aria-hidden className="text-ink-400">
                     <path d="M3 8h9M8 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -110,7 +121,8 @@ export default async function ContactPage() {
             </div>
 
             <div className="mt-8 rounded-2xl border border-border bg-paper-100 p-5">
-              <h2 className="text-sm font-semibold tracking-widest text-ink-500">
+              <h2 className="flex items-center gap-2 text-sm font-semibold tracking-widest text-ink-500">
+                <MapPin aria-hidden size={18} strokeWidth={1.6} />
                 {contactReady.address ? "地址" : "據點"}
               </h2>
               {contactReady.address ? (
@@ -120,7 +132,10 @@ export default async function ContactPage() {
                   以電話與 LINE 聯繫為主，需要當面洽談再另約時間地點。
                 </p>
               )}
-              <p className="mt-1 text-sm text-dim">營業時間：{site.hours}</p>
+              <p className="mt-1 flex items-center gap-1.5 text-sm text-dim">
+                <Clock aria-hidden size={14} strokeWidth={1.8} />
+                營業時間：{site.hours}
+              </p>
             </div>
 
             <Link

@@ -1,4 +1,6 @@
+import { Droplets, ShieldCheck, Sun } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { IconTile } from "@/components/ui/IconTile";
 import { getSiteContent } from "@/lib/content/db";
 import { CONTENT_DEFAULTS } from "@/lib/content/blocks";
 
@@ -11,6 +13,8 @@ type MaterialsContent = {
   whyParagraphs: string[];
 };
 
+const CARD_ICONS = [Sun, ShieldCheck];
+
 export async function MaterialBrands() {
   const content = await getSiteContent("home.materials");
   const c = (content ?? CONTENT_DEFAULTS["home.materials"]) as MaterialsContent;
@@ -21,14 +25,17 @@ export async function MaterialBrands() {
         <SectionHeading kicker={c.kicker} title={c.title} intro={c.intro} />
 
         <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {c.items.map((item) => (
+          {c.items.map((item, i) => (
             <div
               key={item.name}
               className="flex flex-col rounded-2xl border border-border bg-paper-100 p-7"
             >
-              <p className="text-xs font-medium tracking-widest text-ink-500">
-                {item.tagline}
-              </p>
+              <div className="flex items-center gap-3">
+                <IconTile icon={CARD_ICONS[i % CARD_ICONS.length]} />
+                <p className="text-xs font-medium tracking-widest text-ink-500">
+                  {item.tagline}
+                </p>
+              </div>
               <h3 className="mt-2 text-xl font-semibold text-ink-800">
                 {item.name}
               </h3>
@@ -44,7 +51,10 @@ export async function MaterialBrands() {
 
         {c.whyParagraphs.length > 0 && (
           <div className="mt-10 border-l-2 border-seal-500 pl-5">
-            <h3 className="text-lg font-semibold text-ink-800">{c.whyTitle}</h3>
+            <h3 className="flex items-center gap-2 text-lg font-semibold text-ink-800">
+              <Droplets aria-hidden size={20} strokeWidth={1.6} className="text-seal-500" />
+              {c.whyTitle}
+            </h3>
             <div className="mt-3 max-w-3xl space-y-3 text-base leading-relaxed text-foreground/80">
               {c.whyParagraphs.map((p, i) => (
                 <p key={i}>{p}</p>
